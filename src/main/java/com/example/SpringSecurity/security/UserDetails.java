@@ -2,8 +2,10 @@ package com.example.SpringSecurity.security;
 
 import com.example.SpringSecurity.model.User;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 
 import java.util.Collection;
+import java.util.Collections;
 
 public class UserDetails implements org.springframework.security.core.userdetails.UserDetails {
 
@@ -14,9 +16,9 @@ public class UserDetails implements org.springframework.security.core.userdetail
     }
 
 
-    @Override
+    @Override //ROLE_USER or ROLE_ADMIN
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return null;
+        return Collections.singletonList(new SimpleGrantedAuthority(user.getRole()));
     }
 
     @Override
